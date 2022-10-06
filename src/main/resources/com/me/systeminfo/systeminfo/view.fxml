@@ -9,10 +9,10 @@
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
    <children>
-      <Label text="System Name: " />
-      <Label text="System Arch: " />
-      <Label text="System Version: " />
-      <Label text="User Home: " />
-      <Label text="User Name: " />
+      <Label text="System Name: " fx:id="os_name" />
+      <Label text="System Arch: " fx:id="os_arch" />
+      <Label text="System Version: " fx:id="os_version" />
+      <Label text="User Home: " fx:id="user_home" />
+      <Label text="User Name: " fx:id="user_name" />
    </children>
 </VBox>
