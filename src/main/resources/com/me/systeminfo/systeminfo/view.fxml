@@ -14,5 +14,6 @@
       <Label text="System Version: " fx:id="os_version" />
       <Label text="User Home: " fx:id="user_home" />
       <Label text="User Name: " fx:id="user_name" />
+      <Label text="Processors (Cores): " fx:id="processors_cores" />
    </children>
 </VBox>
