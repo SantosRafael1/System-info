@@ -16,5 +16,6 @@
       <Label text="User Name: " fx:id="user_name" />
       <Label text="Processors (Cores): " fx:id="processors_cores" />
       <Label text="Disk Size: " fx:id="disk_size"/>
+      <Label text="Memory Size: " fx:id="memory_size"/>
    </children>
 </VBox>
