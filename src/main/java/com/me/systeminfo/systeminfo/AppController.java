@@ -1,9 +1,11 @@
 package com.me.systeminfo.systeminfo;
 
+import com.sun.management.OperatingSystemMXBean;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
 import java.io.File;
+import java.lang.management.ManagementFactory;
 
 public class AppController {
     @FXML
@@ -13,7 +15,8 @@ public class AppController {
             user_name,
             user_home,
             processors_cores,
-            disk_size;
+            disk_size,
+            memory_size;
 
     String getCurrentText = "";
 
@@ -54,7 +57,18 @@ public class AppController {
         double sizeMB = sizeKB / 1024; //megabyte
         double sizeGB = sizeMB / 1024; //gigabyte
         //disk_size.setText(getCurrentText + sizeGB + "GB");
-        disk_size.setText(String.format("%s: %.2f GB", getCurrentText, sizeGB));
+        disk_size.setText(String.format("%s %.2fGB", getCurrentText, sizeGB));
+    }
+
+    public void memory_size(){
+        getCurrentText = memory_size.getText();
+        long ram= ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalMemorySize();
+
+        double sizeKB = ram / 1024; //kilobyte
+        double sizeMB = sizeKB / 1024; //megabyte
+        double sizeGB = sizeMB / 1024; //gigabyte
+
+        memory_size.setText(String.format("%s %.2fGB", getCurrentText, sizeGB));
     }
 
     public void initialize(){
@@ -65,5 +79,6 @@ public class AppController {
         set_user_home();
         processors_cores();
         disk_size();
+        memory_size();
     }
 }
