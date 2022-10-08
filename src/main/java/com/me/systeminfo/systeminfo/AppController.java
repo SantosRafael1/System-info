@@ -3,6 +3,8 @@ package com.me.systeminfo.systeminfo;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
+import java.io.File;
+
 public class AppController {
     @FXML
     private Label os_name,
@@ -10,7 +12,8 @@ public class AppController {
             os_version,
             user_name,
             user_home,
-            processors_cores;
+            processors_cores,
+            disk_size;
 
     String getCurrentText = "";
 
@@ -44,6 +47,16 @@ public class AppController {
         processors_cores.setText(getCurrentText + Runtime.getRuntime().availableProcessors());
     }
 
+    public void disk_size(){
+        getCurrentText = disk_size.getText();
+        long diskSize = new File("/").getTotalSpace(); //bytes
+        double sizeKB = diskSize / 1024; //kilobyte
+        double sizeMB = sizeKB / 1024; //megabyte
+        double sizeGB = sizeMB / 1024; //gigabyte
+        //disk_size.setText(getCurrentText + sizeGB + "GB");
+        disk_size.setText(String.format("%s: %.2f GB", getCurrentText, sizeGB));
+    }
+
     public void initialize(){
         set_os_name();
         set_os_arch();
@@ -51,5 +64,6 @@ public class AppController {
         set_user_name();
         set_user_home();
         processors_cores();
+        disk_size();
     }
 }
