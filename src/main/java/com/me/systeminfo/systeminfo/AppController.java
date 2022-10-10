@@ -62,7 +62,7 @@ public class AppController {
         getCurrentText = disk_size.getText();
         long diskSize = new File("/").getTotalSpace(); //bytes
         double sizeGB = convertMemoryGB(diskSize);
-        disk_size.setText(String.format("%s %.2f", getCurrentText, sizeGB));
+        disk_size.setText(String.format("%s %.2fGB", getCurrentText, sizeGB));
     }
 
     public void memory_size(){
