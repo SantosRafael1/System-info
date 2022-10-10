@@ -50,24 +50,25 @@ public class AppController {
         processors_cores.setText(getCurrentText + Runtime.getRuntime().availableProcessors());
     }
 
+    public double convertMemoryGB(long size) {
+        double kilobyte = size / 1024;
+        double megabyte = kilobyte / 1024;
+        double gigabyte = megabyte / 1024;
+
+        return gigabyte;
+    }
+
     public void disk_size(){
         getCurrentText = disk_size.getText();
         long diskSize = new File("/").getTotalSpace(); //bytes
-        double sizeKB = diskSize / 1024; //kilobyte
-        double sizeMB = sizeKB / 1024; //megabyte
-        double sizeGB = sizeMB / 1024; //gigabyte
-        //disk_size.setText(getCurrentText + sizeGB + "GB");
-        disk_size.setText(String.format("%s %.2fGB", getCurrentText, sizeGB));
+        double sizeGB = convertMemoryGB(diskSize);
+        disk_size.setText(String.format("%s %.2f", getCurrentText, sizeGB));
     }
 
     public void memory_size(){
         getCurrentText = memory_size.getText();
         long ram= ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalMemorySize();
-
-        double sizeKB = ram / 1024; //kilobyte
-        double sizeMB = sizeKB / 1024; //megabyte
-        double sizeGB = sizeMB / 1024; //gigabyte
-
+        double sizeGB = convertMemoryGB(ram);
         memory_size.setText(String.format("%s %.2fGB", getCurrentText, sizeGB));
     }
 
